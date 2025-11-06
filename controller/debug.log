@@ -1,0 +1,205 @@
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+    [new_gate] => A110
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+    [new_gate] => A36
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => scheduled
+)
+Array
+(
+    [flight_code] => NA256
+    [new_status] => cancelled
+    [new_gate] => B102
+)
+Array
+(
+    [flight_code] => NA256
+    [new_status] => scheduled
+    [new_gate] => B103
+)
+Array
+(
+    [flight_code] => NA256
+    [new_status] => on-time
+    [new_gate] => B109
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => scheduled
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => scheduled
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => landed
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => completed
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => delayed
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => scheduled
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => scheduled
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => delayed
+)
+Array
+(
+    [flight_code] => NA101
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA401
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => NA320
+    [new_status] => boarding
+)

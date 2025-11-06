@@ -1,0 +1,827 @@
+
+@font-face {
+    font-family: 'MyliusSans-Regular';
+    src:url('MyliusSans-Regular/MyliusSans-Regular.woff2') format('woff2'),
+        url('MyliusSans-Regular/MyliusSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.status.boarding { color: green; font-weight: bold; }
+.status.delayed { color: orange; font-weight: bold; }
+.status.on-time { color: blue; font-weight: bold; }
+.status.unknown { color: gray; font-style: italic; }
+
+.atc-feed {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.toggle-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #e0e0e0;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.atc-feed-content {
+    padding: 10px 15px;
+    display: none;
+}
+
+.atc-status-message {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.runway-status p,
+.clearance-log li {
+    font-size: 14px;
+    margin: 3px 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MyliusSans-Regular';
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background: url('NAIA_BG.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #083e50;
+}
+
+/* Container Layout */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    color: #083e50;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    border-right: 1px solid #ddd;
+}
+
+/* Logo Section */
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    width: 120px; /* adjust size as needed */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.brand {
+    font-size: 1.3rem;
+    color: #083e50;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.brand span {
+    font-weight: 500;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.nav a {
+    display: block;
+    text-decoration: none;
+    color: #083e50;
+    font-size: 1rem;
+    margin: 12px 0;
+    transition: 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+    font-weight: bold;
+    border-left: 3px solid #083e50;
+    padding-left: 10px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px 50px;
+    overflow-y: auto;
+}
+
+/* Header (Time Box) */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header p {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #083e50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header span {
+    margin-left: 20px;
+    font-weight: 700;
+}
+
+/* Cards Section */
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.card {
+    flex: 1;
+    background-color: #083e50;
+    color: white;
+    text-align: center;
+    margin: 0 10px;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Flights Table */
+.flights h2 {
+    margin-bottom: 15px;
+    color: #083e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: #f7e9f1;
+    color: #083e50;
+    font-weight: 600;
+}
+
+/* Bottom Section */
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.weather, .activity {
+    flex: 1;
+    background-color: #083e50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.weather-info p {
+    font-size: 0.9rem;
+}
+
+.activity ul {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.activity li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+/* White Container for Flights, Weather, and Activity */
+.content-section {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
+}
+
+/* Flights Section inside the container */
+.flights h2 {
+    margin-bottom: 15px;
+    color: #083e50;
+}
+
+/* Table Styling (inside white box) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: #f7e9f1;
+    color: #083e50;
+    font-weight: 600;
+}
+
+/* Weather and Activity in White Container */
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.weather, .activity {
+    flex: 1;
+    background-color: #083e50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.weather h3, .activity h3 {
+    margin-bottom: 10px;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.weather-info p {
+    font-size: 0.9rem;
+}
+
+.activity ul {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.activity li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+/* ================================
+   FLIGHTS PAGE STYLES
+===================================*/
+
+/* Flights Page Layout */
+.flights-page {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    margin-bottom: 40px;
+}
+
+/* Flights Header */
+.flights-page h2 {
+    color: #083e50;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Search and Filter Bar */
+.flight-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.flight-filters input[type="text"],
+.flight-filters select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.flight-filters button {
+    background-color: #083e50;
+    color: #fff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.flight-filters button:hover {
+    background-color: #6a0c35;
+}
+
+/* Flights Data Table */
+.flights-page table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.flights-page th {
+    background-color: #f7e9f1;
+    color: #083e50;
+    padding: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.flights-page td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Status Badges */
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.status.on-time {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.delayed {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status.boarding {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .flight-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .flights-page table {
+        font-size: 0.85rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.add-flight-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-flight-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-flight-form label {
+    font-weight: 600;
+    color: #083e50;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.add-flight-form input,
+.add-flight-form select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #083e50;
+    background-color: #fafafa;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+.add-flight-form input:focus,
+.add-flight-form select:focus {
+    border-color: #083e50;
+    background-color: #fff;
+}
+
+.add-flight-form button {
+    grid-column: 1 / -1;
+    background-color: #083e50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.add-flight-form button:hover {
+    background-color: #6a0c35;
+}
+
+.add-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-form label {
+    font-weight: 600;
+    color: #083e50;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.add-form input {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #083e50;
+    background-color: #fafafa;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+.add-form input:focus {
+    border-color: #083e50;
+    background-color: #fff;
+}
+
+.add-form button {
+    grid-column: 1 / -1;
+    background-color: #083e50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.add-form button:hover {
+    background-color: #6a0c35;
+}
+
+.add-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-form label {
+    font-weight: 600;
+    color: #083e50;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.add-form input {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #083e50;
+    background-color: #fafafa;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+.add-form input:focus {
+    border-color: #083e50;
+    background-color: #fff;
+}
+
+.add-form button {
+    grid-column: 1 / -1;
+    background-color: #083e50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.add-form button:hover {
+    background-color: #6a0c35;
+}
+
+/* Booking Status Colors */
+.status.confirmed {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* ================================
+   ARRIVALS PAGE STYLES
+===================================*/
+
+.arrivals {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.arrivals h2 {
+    color: #083e50;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Arrivals Table */
+.arrivals table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.arrivals th {
+    background-color: #f7e9f1;
+    color: #083e50;
+    padding: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.arrivals td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Status Colors */
+.status.landed {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Add New Arrival Form */
+.add-form {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.add-form h3 {
+    font-size: 1.4rem;
+    color: #083e50;
+    margin-bottom: 20px;
+    border-left: 5px solid #083e50;
+    padding-left: 10px;
+}
+
+.add-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.add-form label {
+    font-weight: 600;
+    color: #083e50;
+    margin-bottom: 8px;
+}
+
+.add-form input,
+.add-form select {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #fafafa;
+    color: #083e50;
+    transition: 0.3s ease;
+}
+
+.add-form input:focus,
+.add-form select:focus {
+    border-color: #083e50;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(80, 0, 37, 0.3);
+}
+
+.add-form .btn-submit {
+    background-color: #083e50;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.add-form .btn-submit:hover {
+    background-color: #7a0038;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/*DEPARTURES PAGE STYLES*/
+
+.departures {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.departures h2 {
+    color: #083e50;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Table */
+.departures table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.departures th {
+    background-color: #f7e9f1;
+    color: #083e50;
+    padding: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.departures td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Status Colors */
+.status.departed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.delayed {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status.scheduled {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Reuse same add-form styling */
