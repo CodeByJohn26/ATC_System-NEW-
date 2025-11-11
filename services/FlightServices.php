@@ -7,7 +7,7 @@ class FlightService {
     }
 
     public function getCurrentFlights() {
-        $query = "SELECT flight_code, destination, gate, status FROM air_bookings ORDER BY flight_code ASC";
+        $query = "SELECT flight_code,airline, destination, gate, status FROM air_bookings ORDER BY flight_code ASC";
         $result = $this->conn->query($query);
         $flights = [];
 

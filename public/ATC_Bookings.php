@@ -74,7 +74,7 @@
                         </tr>
                     </tbody>
                 </table>
-
+<!--
                 
                 <h3>Add New Booking</h3>
                 <form action="#" method="POST" class="add-form">
@@ -106,7 +106,7 @@
         </section>
     </main>
 </div>
-
+-->
 <script>
         // Show current date and time
         function updateDateTime() {

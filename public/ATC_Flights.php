@@ -1,3 +1,10 @@
+<?php
+require_once '../controller/FlightController.php';
+$controller = new FlightController();
+$flights = $controller->showCurrentFlights();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +26,7 @@
             <nav class="nav">
                 <a href="ATC_Admin.php" >Dashboard</a>
                 <a href="ATC_Flights.php" class="active">Flights</a>
-                <a href="ATC_Bookings.php">Bookings</a>
+              <!--  <a href="ATC_Bookings.php">Bookings</a> -->
                 <a href="ATC_Arrivals.php">Arrivals</a>
                 <a href="ATC_Departures.php">Departures</a>
                 
@@ -34,52 +41,41 @@
                 <p><span id="currentDate"></span> | <span id="currentTime"></span></p>
             </div>
 
-            <div class="flights-page">
-                <h2>Current Flights</h2>
+<div class="flights-page">
+    <h2>Current Flights</h2>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Flight No.</th>
-                            <th>Destination</th>
-                            <th>Departure</th>
-                            <th>Arrival</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>NA101</td>
-                            <td>Tokyo</td>
-                            <td>08:30</td>
-                            <td>12:45</td>
-                            <td><span class="status on-time">On Time</span></td>
-                        </tr>
-                        <tr>
-                            <td>NA207</td>
-                            <td>Hong Kong</td>
-                            <td>09:00</td>
-                            <td>11:20</td>
-                            <td><span class="status delayed">Delayed</span></td>
-                        </tr>
-                        <tr>
-                            <td>NA312</td>
-                            <td>Singapore</td>
-                            <td>10:15</td>
-                            <td>14:30</td>
-                            <td><span class="status boarding">Boarding</span></td>
-                        </tr>
-                        <tr>
-                            <td>NA451</td>
-                            <td>Seoul</td>
-                            <td>11:00</td>
-                            <td>15:10</td>
-                            <td><span class="status cancelled">Cancelled</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Flight No.</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php foreach ($flights as $flight): ?>
+        <tr>
+            <td><?= htmlspecialchars($flight['flight_code']) ?></td>
+            <td><?= htmlspecialchars($flight['departure'] ?? 'N/A') ?></td>
+            <td><?= htmlspecialchars($flight['arrival']?? 'N/A')?></td>
+            <td><?= date("H:i", strtotime($flight['departure_time'] ?? '00:00')) ?></td>
+            <td><?= date("H:i", strtotime($flight['arrival_time'] ?? '00:00')) ?></td>
+            <td>
+                <span class="status <?= strtolower($flight['Status'] ?? 'unknown') ?>">
+                    <?= ucwords(str_replace('-', ' ', $flight['Status'] ?? 'Unknown')) ?>
+                </span>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+    </table>
+</div>
 
                 <!-- Add New Flight Form -->
+                 <!--
                 <h2>Add New Flight</h2>
                 <form class="add-flight-form">
                     <div class="form-group">
@@ -109,7 +105,7 @@
             </div>
         </main>
     </div>
-
+            -->
     <script>
         // Show current date and time
         function updateDateTime() {

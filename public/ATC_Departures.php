@@ -1,3 +1,8 @@
+<?php
+require_once '../controller/FlightController.php';
+$controller = new FlightController();
+$Departures = $controller->showDepartures();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +23,7 @@
         <nav class="nav">
                 <a href="ATC_Admin.php" >Dashboard</a>
                 <a href="ATC_Flights.php" >Flights</a>
-                <a href="ATC_Bookings.php">Bookings</a>
+               <!-- <a href="ATC_Bookings.php">Bookings</a> -->
                 <a href="ATC_Arrivals.php">Arrivals</a>
                 <a href="ATC_Departures.php" class="active">Departures</a>
  
@@ -35,50 +40,36 @@
 
         <!-- Single Clean White Container -->
         <div class="content-section">
-            <h2>Departures List</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Flight No.</th>
-                        <th>Destination</th>
-                        <th>Departure Time</th>
-                        <th>Gate</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>NA105</td>
-                        <td>Tokyo</td>
-                        <td>08:30 AM</td>
-                        <td>A3</td>
-                        <td><span class="status boarding">Boarding</span></td>
-                    </tr>
-                    <tr>
-                        <td>NA210</td>
-                        <td>Cebu</td>
-                        <td>09:45 AM</td>
-                        <td>B1</td>
-                        <td><span class="status delayed">Delayed</span></td>
-                    </tr>
-                    <tr>
-                        <td>NA315</td>
-                        <td>Seoul</td>
-                        <td>11:10 AM</td>
-                        <td>C2</td>
-                        <td><span class="status on-time">On Time</span></td>
-                    </tr>
-                    <tr>
-                        <td>NA450</td>
-                        <td>Singapore</td>
-                        <td>01:25 PM</td>
-                        <td>D1</td>
-                        <td><span class="status cancelled">Cancelled</span></td>
-                    </tr>
-                </tbody>
-            </table>
-
+    <h2>Departures List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Flight No.</th>
+                <th>Destination</th>
+                <th>Departure Time</th>
+                <th>Gate</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+              <?php foreach ($Departures as $flight): ?>
+                <tr>
+                <td><?= htmlspecialchars($flight['flight_code']) ?></td>
+                <td><?= htmlspecialchars($flight['departure'] ?? 'N/A') ?></td>
+                <td><?= date("h:i A", strtotime($flight['departure_time'] ?? '00:00')) ?></td>
+                <td><?= htmlspecialchars($flight['Gate'] ?? 'N/A') ?></td>
+                <td>
+                    <span class="status <?= strtolower($flight['Status'] ?? 'unknown') ?>">
+                        <?= ucfirst($flight['Status'] ?? 'Unknown') ?>
+                    </span>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
             <!-- Add New Departure -->
+             <!--
             <h3>Add New Departure</h3>
             <form action="#" method="POST" class="add-form">
                 <div class="form-group">
@@ -106,7 +97,7 @@
         </div>
     </main>
 </div>
-
+            -->
 <script>
         // Show current date and time
         function updateDateTime() {

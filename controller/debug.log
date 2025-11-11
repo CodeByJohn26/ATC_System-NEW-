@@ -203,3 +203,81 @@ Array
     [flight_code] => NA320
     [new_status] => boarding
 )
+Array
+(
+    [flight_code] => CX905
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => scheduled
+    [new_gate] => 32
+)
+Array
+(
+    [flight_code] => EK333
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => PR102
+    [new_status] => landed
+)
+Array
+(
+    [flight_code] => PR102
+    [new_status] => landed
+)
+Array
+(
+    [flight_code] => SQ921
+    [new_status] => cancelled
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => landed
+)
+Array
+(
+    [flight_code] => CX905
+    [new_gate] => 90
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => on-time
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => boarding
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => completed
+    [new_gate] => 90
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => cancelled
+    [new_gate] => 323
+)
+Array
+(
+    [flight_code] => CX905
+    [new_status] => delayed
+)
